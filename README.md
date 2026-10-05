@@ -15,6 +15,12 @@ From fiji run macro script batch_coloc.ijm. Coloc2 parameters can be changed in 
 
 The script will then loop through all ROIs and run Coloc2 with the script defined parameters.
 
+Make sure the `channel_labels` variable is correctly set for the channels you'd like to analyse.
+
+```
+CHANNEL_PREFIXES = newArray("C1-", "C3-", "C4-");
+```
+
 ## analyze_coloc.R
 
 Run R script to generate plots. You will need to change variables to point at your `sample_metadata.csv` files and `coloc_results.csv`. You will need to create a `sample_medatada.csv` specific for your project. It tells the R script how to plot the data, and should look like this.
@@ -23,4 +29,14 @@ Run R script to generate plots. You will need to change variables to point at yo
 filename, condition, replicate
 Image 2.czi,control, rep1
 Image 30.czi,knocksideways, rep1
+```
+
+Make sure the channel_labels variable is set to your experiment and matches the `CHANNEL_PREFIXES` variable from analyze_coloc.R.
+
+```
+channel_labels <- c(
+  "C1" = "mCherry",
+  "C2" = "DAPI",
+  "C3" = "GFP"
+)
 ```
